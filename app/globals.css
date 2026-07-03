@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Color system -----------------------------------------------
+     Base is near-white with a near-black "carbon" ink, accented by a
+     deep forest green (the certified/compliant signal) and a muted
+     amber (used only for caution / pending-compliance states).
+     No gradients, no glassmorphism — flat, precise, drafting-table
+     surfaces in the spirit of a structural spec sheet.
+  ------------------------------------------------------------------ */
+  --color-white: #ffffff;
+  --color-surface: #f6f7f4;
+  --color-surface-alt: #eef1ec;
+  --color-ink: #0b120f;
+  --color-ink-muted: #4c5750;
+  --color-ink-faint: #8a938c;
+  --color-border: #e2e6df;
+  --color-border-strong: #c9d0c4;
+
+  --color-forest-50: #eef4f0;
+  --color-forest-100: #d6e6db;
+  --color-forest-400: #2f7a52;
+  --color-forest-500: #1c5c3c;
+  --color-forest-600: #16543a;
+  --color-forest-700: #0f3d2a;
+  --color-forest-900: #081f16;
+
+  --color-amber-500: #c08a2e;
+  --color-amber-100: #f6ecd8;
+
+  --font-display: var(--font-inter-tight), "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --container-content: 1180px;
+
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-forest-600);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-forest-100);
+    color: var(--color-forest-900);
+  }
+}
+
+@layer utilities {
+  .font-mono-data {
+    font-family: var(--font-mono);
+    font-feature-settings: "tnum" 1, "zero" 1;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
